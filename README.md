@@ -3,10 +3,10 @@ chess
 
 Install
 -------
-#Install [PhantomJS](http://phantomjs.org/)
+###[PhantomJS](http://phantomjs.org/)
 On mac install using brew.
 <pre>
-	brew install phantomjs
+brew install phantomjs
 </pre>
 
 Games download
@@ -14,8 +14,8 @@ Games download
 The games can be downloaded in two steps. First building the list of
 all games. To do execute the following script. For example:
 <pre>
-	phantomjs src/main/js/chess_tempo/get_index.js \
-		data/chess_tempo_index_20140101.jsons
+phantomjs src/main/js/chess_tempo/get_index.js \
+	data/chess_tempo_index_20140101.jsons
 </pre>
 . Second, downloading the games from the built index. The index can
 be downloaded inparallel by running multiples instances of the script,
