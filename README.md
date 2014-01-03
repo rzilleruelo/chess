@@ -4,7 +4,7 @@ chess
 Install
 -------
 ###[PhantomJS](http://phantomjs.org/)
-On mac install using brew.
+On mac, install using brew.
 <pre>
 brew install phantomjs
 </pre>
@@ -30,5 +30,5 @@ for i in {1..10}; do
 done
 </pre>
 ####Sample crawled data
-+ Index [chess_tempo_head_index.jsons](https://raw.github.com/rzilleruelo/chess/master/src/test/resources/chess_tempo_head_index.jsons)
-+ Game [chess_tempo_head_games.jsons](https://raw.github.com/rzilleruelo/chess/master/src/test/resources/chess_tempo_head_games.jsons)
++ Index: [chess_tempo_head_index.jsons](https://raw.github.com/rzilleruelo/chess/master/src/test/resources/chess_tempo_head_index.jsons)
++ Games: [chess_tempo_head_games.jsons](https://raw.github.com/rzilleruelo/chess/master/src/test/resources/chess_tempo_head_games.jsons)
