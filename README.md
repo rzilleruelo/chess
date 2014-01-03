@@ -29,3 +29,6 @@ for i in {1..10}; do
 		data/games_20140101_$i.jsons&
 done
 </pre>
+####Sample crawled data
++ Index [chess_tempo_head_index.jsons](https://raw.github.com/rzilleruelo/chess/master/src/test/resources/chess_tempo_head_index.jsons)
++ Game [chess_tempo_head_games.jsons](https://raw.github.com/rzilleruelo/chess/master/src/test/resources/chess_tempo_head_games.jsons)
