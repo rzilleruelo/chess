@@ -2,26 +2,29 @@ var fs = require('fs');
 var system = require('system');
 
 var host = 'chesstempo.com';
-var url = '/game-database-htmlonly.html';
+var seed_path = '/game-database-htmlonly.html';
 var deltaSleep = 1000;
 var minSleep = 1000;
 
-if (system.args.length != 2) {
-    system.stderr.writeLine("Usage: get_index.js <output file path>");
+if (system.args.length != 2 && system.args.length != 3) {
+    system.stderr.writeLine("Usage: get_index.js <output file path> [seed_path]");
     phantom.exit(1);
 }
 
 var outputFilePath = system.args[1];
-var fd = fs.open(outputFilePath, 'w');
+var fd = fs.open(outputFilePath, 'a');
 var page = require('webpage').create();
+if (system.args.length == 3) {
+	seed_path = system.args[2];
+}
 
-var consumeNextUrl = function(url) {
-	if (url == null) {
+var consumeNextUrl = function(path) {
+	if (path == null) {
         fd.close();
         phantom.exit(0);
 	} else {
 		setTimeout(function() {
-			page.open('http://' + host + url);
+			page.open('http://' + host + path);
 		}, Math.random() * deltaSleep + minSleep);
 	}
 };
@@ -85,4 +88,4 @@ page.onResourceRequested = function (requestData, request) {
 	}
 };
 
-consumeNextUrl(url);
+consumeNextUrl(seed_path);

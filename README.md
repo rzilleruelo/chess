@@ -21,7 +21,7 @@ phantomjs src/main/js/chess_tempo/get_index.js \
 be downloaded inparallel by running multiples instances of the script,
 indicating the index and the number of scripts to be executed.
 <pre>
-for i in {0..9}; do
+for i in {1..10}; do
 	phantomjs src/main/js/chess_tempo/games_retriever.js \
 		data/chess_tempo_index_20140101.jsons \
 		$i \

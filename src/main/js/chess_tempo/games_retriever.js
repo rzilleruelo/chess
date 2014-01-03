@@ -6,19 +6,33 @@ var deltaSleep = 4000;
 var minSleep = 1000;
 
 if (system.args.length != 5) {
-    system.stderr.writeLine("Usage: games_retriever.js <index file path> <index> <partitions> <output file path>");
+    system.stderr.writeLine('Usage: games_retriever.js <index file path> <index> <partitions> <output file path>');
     phantom.exit(1);
 }
 
 var indexFilePath = system.args[1];
-var index = system.args[2];
+var index = system.args[2] - 1;
 var partitions = system.args[3];
 var outputFilePath = system.args[4];
 var indexFd = fs.open(indexFilePath, 'r');
-var outputFd = fs.open(outputFilePath, 'w');
+var outputFd = fs.open(outputFilePath, 'a');
 var page = require('webpage').create();
 var counter = 0;
 var indexRecord = null;
+var downloadedGames = {}
+
+var log = function(msg) {
+	console.log(index + ' ' + msg);
+}
+
+var checkByDownloadedGames = function() {
+	var fd = fs.open(outputFilePath, 'r');
+	for (var line; (line = fd.readLine()) != null && line != '';) {
+		record = JSON.parse(line);
+		downloadedGames[record.index.link] = true;
+	}
+	fd.close();
+}
 
 var consumeNextLine = function() {
 	setTimeout(function() {
@@ -27,8 +41,12 @@ var consumeNextLine = function() {
 				if (counter%partitions == index) {
 					indexRecord = JSON.parse(line);
 					counter++;
-					page.open('http://' + host + indexRecord.link);
-					return;
+					if (downloadedGames[indexRecord.link]) {
+						delete downloadedGames[indexRecord.link];
+					} else {
+						page.open('http://' + host + indexRecord.link);
+						return;
+					}
 				} else {
 					counter++;
 				}
@@ -37,7 +55,7 @@ var consumeNextLine = function() {
 			outputFd.close();
 			phantom.exit(0);
 		} catch(exception) {
-			console.error(exception);
+			log(exception);
 			indexFd.close();
 			outputFd.close();
 			phantom.exit(0);
@@ -76,22 +94,22 @@ var pageParser = function(indexRecord) {
 page.onLoadFinished = function(status) {
     try {
         if (status === 'success') {
-            console.info(page.url + ' OK');
+            log(page.url + ' OK');
             page.injectJs('../public/jquery/jquery-1.10.2.min.js');
             var data = page.evaluate(pageParser, indexRecord);
             outputFd.writeLine(JSON.stringify(data));
             outputFd.flush();
         } else {
-            console.error(page.url + ' FAIL connection error');
+            log(page.url + ' FAIL connection error');
         }
     } catch(exception) {
-        console.error(page.url + ' FAIL ' + exception);
+        log(page.url + ' FAIL ' + exception);
     }
     consumeNextLine();
 }
 
 page.onConsoleMessage = function (msg, line, source) {
-    console.log(msg);
+    log(msg);
 };
 
 page.onResourceRequested = function (requestData, request) {
@@ -100,4 +118,5 @@ page.onResourceRequested = function (requestData, request) {
 	}
 };
 
+checkByDownloadedGames();
 consumeNextLine();
