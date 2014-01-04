@@ -22,7 +22,7 @@ var indexRecord = null;
 var downloadedGames = {}
 
 var log = function(msg) {
-	console.log(index + ' ' + msg);
+	console.log((index + 1) + ' ' + msg);
 }
 
 var checkByDownloadedGames = function() {
