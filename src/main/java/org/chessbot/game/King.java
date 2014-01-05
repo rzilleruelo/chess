@@ -2,8 +2,8 @@ package org.chessbot.game;
 
 public class King extends ChessMen {
 
-    protected King(Color color) {
-        super(color, color == Color.WHITE ? 1 : 8, 'e');
+    public King(Color color) {
+        super(color, color == Color.WHITE ? ChessBoard.FIRST_ROW : ChessBoard.LAST_ROW, 'e');
     }
 
     @Override

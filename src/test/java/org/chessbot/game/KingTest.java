@@ -1,6 +1,5 @@
 package org.chessbot.game;
 
-
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertFalse;
@@ -10,7 +9,7 @@ import static junit.framework.TestCase.assertEquals;
 public class KingTest {
 
     @Test
-    public void testWhiteKingCreation() {
+    public void whiteKingCreationTest() {
         King king = new King(ChessMen.Color.WHITE);
         assertEquals(ChessMen.Color.WHITE, king.getColor());
         assertEquals(ChessBoard.FIRST_ROW, king.getRow());
@@ -18,7 +17,7 @@ public class KingTest {
     }
 
     @Test
-    public void testBlackKingCreation() {
+    public void blackKingCreationTest() {
         King king = new King(ChessMen.Color.BLACK);
         assertEquals(ChessMen.Color.BLACK, king.getColor());
         assertEquals(ChessBoard.LAST_ROW, king.getRow());
@@ -26,7 +25,7 @@ public class KingTest {
     }
 
     @Test
-    public void testCanMove() {
+    public void shouldBeAbleToMoveTest() {
         King king = new King(ChessMen.Color.WHITE);
         king.row = 4;
         king.column = 'd';
@@ -42,7 +41,7 @@ public class KingTest {
     }
 
     @Test
-    public void testCannotMove() {
+    public void shouldNotBeAbleToMoveTest() {
         King king = new King(ChessMen.Color.WHITE);
         king.row = 4;
         king.column = 'd';

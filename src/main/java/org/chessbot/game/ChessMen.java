@@ -18,7 +18,7 @@ public abstract class ChessMen {
     }
 
     public Color getColor() {
-        return this.color;
+      return this.color;
     }
 
     public int getRow() {
@@ -27,6 +27,11 @@ public abstract class ChessMen {
 
     public char getColumn() {
         return this.column;
+    }
+
+    public void setPosition(int row, char column) {
+        this.row = row;
+        this.column = column;
     }
 
     public abstract boolean canMove(int row, char column);
