@@ -8,6 +8,10 @@ On mac, install using brew.
 <pre>
 brew install phantomjs
 </pre>
+### Compile, test and Package the code
+<pre>
+mvn clean package
+</pre>
 
 Games download
 --------------
@@ -32,3 +36,7 @@ done
 ####Sample crawled data
 + Index: [chess_tempo_head_index.jsons](https://raw.github.com/rzilleruelo/chess/master/src/test/resources/chess_tempo_head_index.jsons)
 + Games: [chess_tempo_head_games.jsons](https://raw.github.com/rzilleruelo/chess/master/src/test/resources/chess_tempo_head_games.jsons)
+
+Todo
+----
++ Add test coverage http://www.javacodegeeks.com/2013/08/creating-code-coverage-reports-for-unit-and-integration-tests-with-the-jacoco-maven-plugin.html
