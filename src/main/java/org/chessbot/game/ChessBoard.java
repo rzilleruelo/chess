@@ -1,7 +1,13 @@
 package org.chessbot.game;
 
+import static org.chessbot.game.ChessMen.Color.BLACK;
+import static org.chessbot.game.ChessMen.Color.WHITE;
+import static org.chessbot.game.ChessMenTuple.Side.LEFT;
+import static org.chessbot.game.ChessMenTuple.Side.RIGHT;
 import org.chessbot.game.rules.ChessRulesSet;
 import org.chessbot.game.rules.Rule;
+import static org.chessbot.game.rules.Rule.Mode.CURRENT_MOVE;
+import static org.chessbot.game.rules.Rule.Mode.FUTURE_MOVE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,19 +44,19 @@ public class ChessBoard {
     }
 
     public King getKing(ChessMen.Color color) {
-        if (color == ChessMen.Color.WHITE) return this.whiteKing;
+        if (color == WHITE) return this.whiteKing;
         return this.blackKing;
     }
 
     public boolean anyCanMove(ChessMen.Color color, int row, char column) {
-        if (color == ChessMen.Color.BLACK) {
+        if (color == BLACK) {
             return this.anyCanMove(this.whiteChessMans, row, column);
         }
         return this.anyCanMove(this.blackChessMans, row, column);
     }
 
     public void move(int rowA, char columnA, int rowB, char columnB) {
-        ChessMen chessMen = this.validateMove(rowA, columnA, rowB, columnB, Rule.Mode.CURRENT_MOVE);
+        ChessMen chessMen = this.validateMove(rowA, columnA, rowB, columnB, CURRENT_MOVE);
         this.setChessMen(null, rowA, columnA);
         chessMen.setPosition(rowB, columnB);
         this.setChessMen(chessMen);
@@ -62,15 +68,23 @@ public class ChessBoard {
         this.blackChessMans.clear();
         this.grid = new ChessMen[ChessBoard.BOARD_SIZE][ChessBoard.BOARD_SIZE];
 
-        this.whiteChessMans.add(this.setChessMen(this.whiteKing = new King(ChessMen.Color.WHITE)));
-        this.whiteChessMans.add(this.setChessMen(new Queen(ChessMen.Color.WHITE)));
-        this.whiteChessMans.add(this.setChessMen(new Rook(ChessMen.Color.WHITE, Rook.Side.LEFT)));
-        this.whiteChessMans.add(this.setChessMen(new Rook(ChessMen.Color.WHITE, Rook.Side.RIGHT)));
+        this.whiteChessMans.add(this.setChessMen(this.whiteKing = new King(WHITE)));
+        this.whiteChessMans.add(this.setChessMen(new Queen(WHITE)));
+        this.whiteChessMans.add(this.setChessMen(new Rook(WHITE, LEFT)));
+        this.whiteChessMans.add(this.setChessMen(new Rook(WHITE, RIGHT)));
+        this.whiteChessMans.add(this.setChessMen(new Bishop(WHITE, LEFT)));
+        this.whiteChessMans.add(this.setChessMen(new Bishop(WHITE, RIGHT)));
+        this.whiteChessMans.add(this.setChessMen(new Knight(WHITE, LEFT)));
+        this.whiteChessMans.add(this.setChessMen(new Knight(WHITE, RIGHT)));
 
-        this.blackChessMans.add(this.setChessMen(this.blackKing = new King(ChessMen.Color.BLACK)));
-        this.blackChessMans.add(this.setChessMen(new Queen(ChessMen.Color.BLACK)));
-        this.blackChessMans.add(this.setChessMen(new Rook(ChessMen.Color.BLACK, Rook.Side.LEFT)));
-        this.blackChessMans.add(this.setChessMen(new Rook(ChessMen.Color.BLACK, Rook.Side.RIGHT)));
+        this.blackChessMans.add(this.setChessMen(this.blackKing = new King(BLACK)));
+        this.blackChessMans.add(this.setChessMen(new Queen(BLACK)));
+        this.blackChessMans.add(this.setChessMen(new Rook(BLACK, LEFT)));
+        this.blackChessMans.add(this.setChessMen(new Rook(BLACK, RIGHT)));
+        this.blackChessMans.add(this.setChessMen(new Bishop(BLACK, LEFT)));
+        this.blackChessMans.add(this.setChessMen(new Bishop(BLACK, RIGHT)));
+        this.blackChessMans.add(this.setChessMen(new Knight(BLACK, LEFT)));
+        this.blackChessMans.add(this.setChessMen(new Knight(BLACK, RIGHT)));
     }
 
     protected ChessMen setChessMen(ChessMen chessMen) {
@@ -90,7 +104,7 @@ public class ChessBoard {
     ) {
         ChessMen chessMen = this.getChessMen(rowA, columnA);
         if (chessMen == null) {
-            if (mode == Rule.Mode.FUTURE_MOVE) return null;
+            if (mode == FUTURE_MOVE) return null;
             throw new IllegalArgumentException(String.format(
                 "There is not chess men to move at %c%d",
                 columnA,
@@ -98,7 +112,7 @@ public class ChessBoard {
             ));
         }
         if (!chessMen.canMove(rowB, columnB)) {
-            if (mode == Rule.Mode.FUTURE_MOVE) return null;
+            if (mode == FUTURE_MOVE) return null;
             throw new IllegalArgumentException(String.format(
                 "%s cannot be moved to %c%d",
                 chessMen.getClass().getName(),
@@ -117,7 +131,7 @@ public class ChessBoard {
                 chessMen.getColumn(),
                 row,
                 column,
-                Rule.Mode.FUTURE_MOVE
+                FUTURE_MOVE
             ) != null) {
                 return true;
             }

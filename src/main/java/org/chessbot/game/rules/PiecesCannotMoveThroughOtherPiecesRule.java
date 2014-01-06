@@ -2,12 +2,13 @@ package org.chessbot.game.rules;
 
 import org.chessbot.game.ChessBoard;
 import org.chessbot.game.ChessMen;
+import org.chessbot.game.Knight;
 
 public class PiecesCannotMoveThroughOtherPiecesRule implements Rule {
 
     @Override
     public boolean apply(ChessBoard chessBoard, ChessMen chessMen, Mode mode) {
-        return true;
+        return !chessMen.getClass().equals(Knight.class);
     }
 
     @Override
@@ -27,7 +28,6 @@ public class PiecesCannotMoveThroughOtherPiecesRule implements Rule {
                 if (chessBoard.getChessMen(r, c) != null) return false;
             }
         }
-
         return true;
     }
 

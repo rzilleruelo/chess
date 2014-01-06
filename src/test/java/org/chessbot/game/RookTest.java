@@ -35,7 +35,7 @@ public class RookTest {
 
     @Test
     public void leftBlackRookCreationTest() {
-        Rook rook = new Rook(BLACK, Rook.Side.LEFT);
+        Rook rook = new Rook(BLACK, LEFT);
         assertEquals(BLACK, rook.getColor());
         assertEquals(LAST_ROW, rook.getRow());
         assertEquals(FIRST_COLUMN, rook.getColumn());

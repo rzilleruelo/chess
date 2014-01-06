@@ -2,6 +2,11 @@ package org.chessbot.game.rules;
 
 import org.chessbot.game.ChessBoard;
 import org.chessbot.game.ChessMen;
+import static org.chessbot.game.ChessMen.Color.WHITE;
+import static org.chessbot.game.ChessMenTuple.Side.LEFT;
+import static org.chessbot.game.rules.Rule.Mode.CURRENT_MOVE;
+
+import org.chessbot.game.Knight;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertFalse;
@@ -17,7 +22,13 @@ public class PiecesCannotMoveThroughOtherPiecesRuleTest {
 
     @Test
     public void shouldAlwaysApplyTest() {
-        assertTrue(rule.apply(chessBoard, chessMen, Rule.Mode.CURRENT_MOVE));
+        assertTrue(rule.apply(chessBoard, chessMen, CURRENT_MOVE));
+    }
+
+    @Test
+    public void shouldNotApplyToKnight() {
+        Knight knight = new Knight(WHITE, LEFT);
+        assertFalse(rule.apply(chessBoard, knight, CURRENT_MOVE));
     }
 
     @Test
