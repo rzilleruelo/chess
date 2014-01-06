@@ -76,6 +76,9 @@ public class ChessBoard {
         this.whiteChessMans.add(this.setChessMen(new Bishop(WHITE, RIGHT)));
         this.whiteChessMans.add(this.setChessMen(new Knight(WHITE, LEFT)));
         this.whiteChessMans.add(this.setChessMen(new Knight(WHITE, RIGHT)));
+        for(char column = FIRST_COLUMN; column <= LAST_COLUMN; column++) {
+            this.whiteChessMans.add(this.setChessMen(new Pawn(WHITE, column)));
+        }
 
         this.blackChessMans.add(this.setChessMen(this.blackKing = new King(BLACK)));
         this.blackChessMans.add(this.setChessMen(new Queen(BLACK)));
@@ -85,6 +88,9 @@ public class ChessBoard {
         this.blackChessMans.add(this.setChessMen(new Bishop(BLACK, RIGHT)));
         this.blackChessMans.add(this.setChessMen(new Knight(BLACK, LEFT)));
         this.blackChessMans.add(this.setChessMen(new Knight(BLACK, RIGHT)));
+        for(char column = FIRST_COLUMN; column <= LAST_COLUMN; column++) {
+            this.blackChessMans.add(this.setChessMen(new Pawn(BLACK, column)));
+        }
     }
 
     protected ChessMen setChessMen(ChessMen chessMen) {

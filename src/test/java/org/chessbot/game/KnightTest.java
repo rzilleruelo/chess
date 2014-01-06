@@ -9,10 +9,13 @@ import static org.chessbot.game.ChessMenTuple.Side.LEFT;
 import static org.chessbot.game.ChessMenTuple.Side.RIGHT;
 import static org.chessbot.game.ChessBoard.FIRST_ROW;
 import static org.chessbot.game.ChessBoard.LAST_ROW;
+import static org.mockito.Mockito.mock;
 
 import org.junit.Test;
 
 public class KnightTest {
+
+    private final ChessBoard chessBoard = mock(ChessBoard.class);
 
     @Test
     public void leftWhiteKnightCreationTest() {

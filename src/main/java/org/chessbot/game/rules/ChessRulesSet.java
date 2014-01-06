@@ -3,6 +3,7 @@ package org.chessbot.game.rules;
 import org.chessbot.game.ChessBoard;
 import org.chessbot.game.ChessMen;
 import org.chessbot.game.King;
+import org.chessbot.game.Pawn;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +21,9 @@ public class ChessRulesSet {
     protected static final Map<Class, Rule[]> chessMenRules = new HashMap<Class, Rule[]>() {{
         put(King.class, new Rule[] {
             new KingCannotMoveIntoACheckRule()
+        });
+        put(Pawn.class, new Rule[] {
+            new PawnRestrictionsRule()
         });
     }};
 

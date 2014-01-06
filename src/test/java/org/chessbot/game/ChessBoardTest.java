@@ -1,5 +1,8 @@
 package org.chessbot.game;
 
+import static org.chessbot.game.ChessMen.Color.BLACK;
+import static org.chessbot.game.ChessMen.Color.WHITE;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -41,21 +44,21 @@ public class ChessBoardTest {
 
     @Test
     public void anyCanMoveToAReachableBinTest() {
-        assertTrue(chessBoard.anyCanMove(ChessMen.Color.WHITE, 6, 'd'));
+        assertTrue(chessBoard.anyCanMove(WHITE, 6, 'd'));
     }
 
     @Test
     public void anyCanMoveToANonReachableBinTest() {
-        assertFalse(chessBoard.anyCanMove(ChessMen.Color.WHITE, 4, 'c'));
+        assertFalse(chessBoard.anyCanMove(WHITE, 4, 'c'));
     }
 
     @Test
     public void shouldMoveAValidMoveTest() {
-        ChessMen expectedChessMen = chessBoard.getChessMen(1, 'e');
-        chessBoard.move(1, 'e', 2, 'e');
-        assertNull(chessBoard.getChessMen(1, 'e'));
-        assertEquals(expectedChessMen, chessBoard.getChessMen(2, 'e'));
-        assertEquals(2, expectedChessMen.getRow());
+        ChessMen expectedChessMen = chessBoard.getChessMen(2, 'e');
+        chessBoard.move(2, 'e', 3, 'e');
+        assertNull(chessBoard.getChessMen(2, 'e'));
+        assertEquals(expectedChessMen, chessBoard.getChessMen(3, 'e'));
+        assertEquals(3, expectedChessMen.getRow());
         assertEquals('e', expectedChessMen.getColumn());
     }
 
@@ -82,14 +85,14 @@ public class ChessBoardTest {
 
     @Test
     public void shouldGetWhiteKingTest() {
-        King king = chessBoard.getKing(ChessMen.Color.WHITE);
-        assertEquals(ChessMen.Color.WHITE, king.getColor());
+        King king = chessBoard.getKing(WHITE);
+        assertEquals(WHITE, king.getColor());
     }
 
     @Test
     public void shouldGetBlackKingTest() {
-        King king = chessBoard.getKing(ChessMen.Color.BLACK);
-        assertEquals(ChessMen.Color.BLACK, king.getColor());
+        King king = chessBoard.getKing(BLACK);
+        assertEquals(BLACK, king.getColor());
     }
 
 }

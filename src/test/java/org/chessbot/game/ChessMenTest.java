@@ -11,6 +11,7 @@ import static org.mockito.Mockito.mock;
 
 public class ChessMenTest {
 
+    private final ChessBoard chessBoard = mock(ChessBoard.class);
     private final ChessMen.Color expectedColor = ChessMen.Color.WHITE;
     private final int expectedRow = ChessBoard.FIRST_ROW;
     private final char expectedColumn = ChessBoard.FIRST_COLUMN;

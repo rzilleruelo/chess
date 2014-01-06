@@ -12,10 +12,13 @@ import static org.chessbot.game.ChessBoard.FIRST_COLUMN;
 import static org.chessbot.game.ChessBoard.FIRST_ROW;
 import static org.chessbot.game.ChessBoard.LAST_COLUMN;
 import static org.chessbot.game.ChessBoard.LAST_ROW;
+import static org.mockito.Mockito.mock;
 
 import org.junit.Test;
 
 public class RookTest {
+
+    private ChessBoard chessBoard = mock(ChessBoard.class);
 
     @Test
     public void leftWhiteRookCreationTest() {

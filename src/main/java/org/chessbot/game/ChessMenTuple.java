@@ -1,5 +1,9 @@
 package org.chessbot.game;
 
+import static org.chessbot.game.ChessBoard.FIRST_ROW;
+import static org.chessbot.game.ChessBoard.LAST_ROW;
+import static org.chessbot.game.ChessMen.Color.WHITE;
+
 public abstract class ChessMenTuple extends ChessMen {
 
     public enum Side {
@@ -10,7 +14,7 @@ public abstract class ChessMenTuple extends ChessMen {
     public ChessMenTuple(Color color, Side side, char leftColumn, char rightColumn) {
         super(
             color,
-            color == Color.WHITE ? ChessBoard.FIRST_ROW : ChessBoard.LAST_ROW,
+            color == WHITE ? FIRST_ROW : LAST_ROW,
             side == Side.LEFT ? leftColumn : rightColumn
         );
     }
