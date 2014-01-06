@@ -57,8 +57,13 @@ public class ChessBoard {
 
         this.whiteChessMans.add(this.setChessMen(new King(ChessMen.Color.WHITE)));
         this.whiteChessMans.add(this.setChessMen(new Queen(ChessMen.Color.WHITE)));
+        this.whiteChessMans.add(this.setChessMen(new Rook(ChessMen.Color.WHITE, Rook.Side.LEFT)));
+        this.whiteChessMans.add(this.setChessMen(new Rook(ChessMen.Color.WHITE, Rook.Side.RIGHT)));
+
         this.blackChessMans.add(this.setChessMen(new King(ChessMen.Color.BLACK)));
-        this.whiteChessMans.add(this.setChessMen(new Queen(ChessMen.Color.BLACK)));
+        this.blackChessMans.add(this.setChessMen(new Queen(ChessMen.Color.BLACK)));
+        this.blackChessMans.add(this.setChessMen(new Rook(ChessMen.Color.BLACK, Rook.Side.LEFT)));
+        this.blackChessMans.add(this.setChessMen(new Rook(ChessMen.Color.BLACK, Rook.Side.RIGHT)));
     }
 
     protected ChessMen setChessMen(ChessMen chessMen) {

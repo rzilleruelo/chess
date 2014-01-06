@@ -27,8 +27,7 @@ public class QueenTest {
     @Test
     public void shouldBeAbleToMoveTest() {
         Queen queen = new Queen(ChessMen.Color.WHITE);
-        queen.row = 4;
-        queen.column = 'd';
+        queen.setPosition(4, 'd');
 
         assertTrue(queen.canMove(5, 'd'));
         assertTrue(queen.canMove(6, 'f'));
@@ -43,8 +42,7 @@ public class QueenTest {
     @Test
     public void shouldNotBeAbleToMoveTest() {
         Queen queen = new Queen(ChessMen.Color.WHITE);
-        queen.row = 4;
-        queen.column = 'd';
+        queen.setPosition(4, 'd');
 
         assertFalse(queen.canMove(6, 'g'));
     }

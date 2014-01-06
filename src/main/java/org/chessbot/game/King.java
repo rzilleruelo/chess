@@ -7,10 +7,10 @@ public class King extends ChessMen {
     }
 
     @Override
-    public boolean canMove(int row, char column) {
+    protected boolean specificMoveRules(int row, char column) {
         int dRow = this.row - row;
         int dColumn = this.column - column;
-        return (dRow == -1 || dRow == 1 || dColumn == -1 || dColumn == 1);
+        return Math.abs(dRow) <= 1 && Math.abs(dColumn) <= 1;
     }
 
 }

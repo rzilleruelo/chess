@@ -7,7 +7,7 @@ public class Queen extends ChessMen {
     }
 
     @Override
-    public boolean canMove(int row, char column) {
+    protected boolean specificMoveRules(int row, char column) {
         int dRow = this.row - row;
         int dColumn = this.column - column;
         return (dRow == 0 || dColumn == 0 || Math.abs(dRow) == Math.abs(dColumn));

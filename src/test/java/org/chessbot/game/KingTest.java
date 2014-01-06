@@ -27,8 +27,7 @@ public class KingTest {
     @Test
     public void shouldBeAbleToMoveTest() {
         King king = new King(ChessMen.Color.WHITE);
-        king.row = 4;
-        king.column = 'd';
+        king.setPosition(4, 'd');
 
         assertTrue(king.canMove(5, 'd'));
         assertTrue(king.canMove(5, 'e'));
@@ -43,8 +42,7 @@ public class KingTest {
     @Test
     public void shouldNotBeAbleToMoveTest() {
         King king = new King(ChessMen.Color.WHITE);
-        king.row = 4;
-        king.column = 'd';
+        king.setPosition(4, 'd');
 
         assertFalse(king.canMove(4, 'd'));
         assertFalse(king.canMove(6, 'd'));

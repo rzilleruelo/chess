@@ -34,6 +34,10 @@ public abstract class ChessMen {
         this.column = column;
     }
 
-    public abstract boolean canMove(int row, char column);
+    public boolean canMove(int row, char column) {
+        return (this.row != row || this.column != column) && this.specificMoveRules(row, column);
+    }
+
+    protected abstract boolean specificMoveRules(int row, char column);
 
 }

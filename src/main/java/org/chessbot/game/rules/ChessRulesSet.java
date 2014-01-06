@@ -56,6 +56,7 @@ public class ChessRulesSet {
             char column,
             Rule.Mode mode
     ) {
+        if (rules == null) return true;
         boolean notValid;
         for (Rule rule : rules) {
             notValid = rule.apply(chessBoard, chessMen, mode);
