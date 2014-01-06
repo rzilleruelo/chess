@@ -1,17 +1,9 @@
 package org.chessbot.game;
 
-public class Rook extends ChessMen {
-
-    public enum Side {
-        LEFT, RIGHT;
-    }
+public class Rook extends ChessMenTuple {
 
     public Rook(Color color, Side side) {
-        super(
-            color,
-            color == Color.WHITE ? ChessBoard.FIRST_ROW : ChessBoard.LAST_ROW,
-            side == Side.LEFT ? ChessBoard.FIRST_COLUMN : ChessBoard.LAST_COLUMN
-        );
+        super(color, side, ChessBoard.FIRST_COLUMN, ChessBoard.LAST_COLUMN);
     }
 
     @Override

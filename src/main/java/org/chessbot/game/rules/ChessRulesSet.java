@@ -13,12 +13,13 @@ public class ChessRulesSet {
         new KeepInsideBoardRule(),
         new WhiteChessMenHasToMoveFirst(),
         new MoveToClearBinOrCaptureChessMenRule(),
-        new PiecesCannotMoveThroughOtherPiecesRule()
+        new PiecesCannotMoveThroughOtherPiecesRule(),
+        new KingHasToMoveWhenIsOnCheckRule()
     };
 
     protected static final Map<Class, Rule[]> chessMenRules = new HashMap<Class, Rule[]>() {{
         put(King.class, new Rule[] {
-                new KingCannotMoveIntoACheckRule()
+            new KingCannotMoveIntoACheckRule()
         });
     }};
 

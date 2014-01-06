@@ -1,6 +1,5 @@
 package org.chessbot.game.rules;
 
-
 import org.chessbot.game.ChessBoard;
 import org.chessbot.game.ChessMen;
 import org.junit.Test;

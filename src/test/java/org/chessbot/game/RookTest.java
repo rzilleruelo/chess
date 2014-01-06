@@ -1,51 +1,57 @@
 package org.chessbot.game;
 
-import org.chessbot.game.ChessBoard;
-import org.chessbot.game.ChessMen;
-import org.chessbot.game.Rook;
-import org.junit.Test;
-
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
+
+import static org.chessbot.game.ChessMen.Color.BLACK;
+import static org.chessbot.game.ChessMen.Color.WHITE;
+import static org.chessbot.game.ChessMenTuple.Side.LEFT;
+import static org.chessbot.game.ChessMenTuple.Side.RIGHT;
+import static org.chessbot.game.ChessBoard.FIRST_COLUMN;
+import static org.chessbot.game.ChessBoard.FIRST_ROW;
+import static org.chessbot.game.ChessBoard.LAST_COLUMN;
+import static org.chessbot.game.ChessBoard.LAST_ROW;
+
+import org.junit.Test;
 
 public class RookTest {
 
     @Test
     public void leftWhiteRookCreationTest() {
-        Rook rook = new Rook(ChessMen.Color.WHITE, Rook.Side.LEFT);
-        assertEquals(ChessMen.Color.WHITE, rook.getColor());
-        assertEquals(ChessBoard.FIRST_ROW, rook.getRow());
-        assertEquals(ChessBoard.FIRST_COLUMN, rook.getColumn());
+        Rook rook = new Rook(WHITE, LEFT);
+        assertEquals(WHITE, rook.getColor());
+        assertEquals(FIRST_ROW, rook.getRow());
+        assertEquals(FIRST_COLUMN, rook.getColumn());
     }
 
     @Test
     public void rightWhiteRookCreationTest() {
-        Rook rook = new Rook(ChessMen.Color.WHITE, Rook.Side.RIGHT);
-        assertEquals(ChessMen.Color.WHITE, rook.getColor());
-        assertEquals(ChessBoard.FIRST_ROW, rook.getRow());
-        assertEquals(ChessBoard.LAST_COLUMN, rook.getColumn());
+        Rook rook = new Rook(WHITE, RIGHT);
+        assertEquals(WHITE, rook.getColor());
+        assertEquals(FIRST_ROW, rook.getRow());
+        assertEquals(LAST_COLUMN, rook.getColumn());
     }
 
     @Test
     public void leftBlackRookCreationTest() {
-        Rook rook = new Rook(ChessMen.Color.BLACK, Rook.Side.LEFT);
-        assertEquals(ChessMen.Color.BLACK, rook.getColor());
-        assertEquals(ChessBoard.LAST_ROW, rook.getRow());
-        assertEquals(ChessBoard.FIRST_COLUMN, rook.getColumn());
+        Rook rook = new Rook(BLACK, Rook.Side.LEFT);
+        assertEquals(BLACK, rook.getColor());
+        assertEquals(LAST_ROW, rook.getRow());
+        assertEquals(FIRST_COLUMN, rook.getColumn());
     }
 
     @Test
     public void rightBlackRookCreationTest() {
-        Rook rook = new Rook(ChessMen.Color.BLACK, Rook.Side.RIGHT);
-        assertEquals(ChessMen.Color.BLACK, rook.getColor());
-        assertEquals(ChessBoard.LAST_ROW, rook.getRow());
-        assertEquals(ChessBoard.LAST_COLUMN, rook.getColumn());
+        Rook rook = new Rook(BLACK, RIGHT);
+        assertEquals(BLACK, rook.getColor());
+        assertEquals(LAST_ROW, rook.getRow());
+        assertEquals(LAST_COLUMN, rook.getColumn());
     }
 
     @Test
     public void shouldBeAbleToMoveTest() {
-        Rook rook = new Rook(ChessMen.Color.WHITE, Rook.Side.LEFT);
+        Rook rook = new Rook(WHITE, LEFT);
         rook.setPosition(4, 'd');
 
         assertTrue(rook.canMove(5, 'd'));
@@ -56,7 +62,7 @@ public class RookTest {
 
     @Test
     public void shouldNotBeAbleToMoveTest() {
-        Rook rook = new Rook(ChessMen.Color.WHITE, Rook.Side.LEFT);
+        Rook rook = new Rook(WHITE, LEFT);
         rook.setPosition(4, 'd');
 
         assertFalse(rook.canMove(6, 'f'));

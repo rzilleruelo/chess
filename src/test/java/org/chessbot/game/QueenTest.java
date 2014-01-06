@@ -1,32 +1,37 @@
 package org.chessbot.game;
 
-import org.junit.Test;
-
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
+
+import static org.chessbot.game.ChessMen.Color.BLACK;
+import static org.chessbot.game.ChessMen.Color.WHITE;
+import static org.chessbot.game.ChessBoard.FIRST_ROW;
+import static org.chessbot.game.ChessBoard.LAST_ROW;
+
+import org.junit.Test;
 
 public class QueenTest {
 
     @Test
     public void whiteQueenCreationTest() {
-        Queen queen = new Queen(ChessMen.Color.WHITE);
-        assertEquals(ChessMen.Color.WHITE, queen.getColor());
-        assertEquals(ChessBoard.FIRST_ROW, queen.getRow());
+        Queen queen = new Queen(WHITE);
+        assertEquals(WHITE, queen.getColor());
+        assertEquals(FIRST_ROW, queen.getRow());
         assertEquals('d', queen.getColumn());
     }
 
     @Test
     public void blackQueenCreationTest() {
-        Queen queen = new Queen(ChessMen.Color.BLACK);
-        assertEquals(ChessMen.Color.BLACK, queen.getColor());
-        assertEquals(ChessBoard.LAST_ROW, queen.getRow());
+        Queen queen = new Queen(BLACK);
+        assertEquals(BLACK, queen.getColor());
+        assertEquals(LAST_ROW, queen.getRow());
         assertEquals('d', queen.getColumn());
     }
 
     @Test
     public void shouldBeAbleToMoveTest() {
-        Queen queen = new Queen(ChessMen.Color.WHITE);
+        Queen queen = new Queen(WHITE);
         queen.setPosition(4, 'd');
 
         assertTrue(queen.canMove(5, 'd'));
@@ -41,7 +46,7 @@ public class QueenTest {
 
     @Test
     public void shouldNotBeAbleToMoveTest() {
-        Queen queen = new Queen(ChessMen.Color.WHITE);
+        Queen queen = new Queen(WHITE);
         queen.setPosition(4, 'd');
 
         assertFalse(queen.canMove(6, 'g'));

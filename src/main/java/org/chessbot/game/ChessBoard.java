@@ -16,6 +16,8 @@ public class ChessBoard {
     public static final char LAST_COLUMN = 'h';
 
     protected boolean initialMoveIsMade;
+    protected King whiteKing;
+    protected King blackKing;
     protected List<ChessMen> whiteChessMans;
     protected List<ChessMen> blackChessMans;
     protected ChessMen[][] grid;
@@ -33,6 +35,11 @@ public class ChessBoard {
 
     public ChessMen getChessMen(int row, char column) {
         return this.grid[row - ChessBoard.FIRST_ROW][column - ChessBoard.FIRST_COLUMN];
+    }
+
+    public King getKing(ChessMen.Color color) {
+        if (color == ChessMen.Color.WHITE) return this.whiteKing;
+        return this.blackKing;
     }
 
     public boolean anyCanMove(ChessMen.Color color, int row, char column) {
@@ -55,12 +62,12 @@ public class ChessBoard {
         this.blackChessMans.clear();
         this.grid = new ChessMen[ChessBoard.BOARD_SIZE][ChessBoard.BOARD_SIZE];
 
-        this.whiteChessMans.add(this.setChessMen(new King(ChessMen.Color.WHITE)));
+        this.whiteChessMans.add(this.setChessMen(this.whiteKing = new King(ChessMen.Color.WHITE)));
         this.whiteChessMans.add(this.setChessMen(new Queen(ChessMen.Color.WHITE)));
         this.whiteChessMans.add(this.setChessMen(new Rook(ChessMen.Color.WHITE, Rook.Side.LEFT)));
         this.whiteChessMans.add(this.setChessMen(new Rook(ChessMen.Color.WHITE, Rook.Side.RIGHT)));
 
-        this.blackChessMans.add(this.setChessMen(new King(ChessMen.Color.BLACK)));
+        this.blackChessMans.add(this.setChessMen(this.blackKing = new King(ChessMen.Color.BLACK)));
         this.blackChessMans.add(this.setChessMen(new Queen(ChessMen.Color.BLACK)));
         this.blackChessMans.add(this.setChessMen(new Rook(ChessMen.Color.BLACK, Rook.Side.LEFT)));
         this.blackChessMans.add(this.setChessMen(new Rook(ChessMen.Color.BLACK, Rook.Side.RIGHT)));

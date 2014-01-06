@@ -80,4 +80,16 @@ public class ChessBoardTest {
         assertNull(chessBoard.getChessMen(3, 'e'));
     }
 
+    @Test
+    public void shouldGetWhiteKingTest() {
+        King king = chessBoard.getKing(ChessMen.Color.WHITE);
+        assertEquals(ChessMen.Color.WHITE, king.getColor());
+    }
+
+    @Test
+    public void shouldGetBlackKingTest() {
+        King king = chessBoard.getKing(ChessMen.Color.BLACK);
+        assertEquals(ChessMen.Color.BLACK, king.getColor());
+    }
+
 }
