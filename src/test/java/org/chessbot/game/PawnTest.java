@@ -54,4 +54,33 @@ public class PawnTest {
         assertFalse(pawn.canMove(pawn.getRow() - 1, pawn.getColumn()));
     }
 
+    @Test
+    public void shouldBeAbleToMoveLikeQueenWhenPromotedTest() {
+        Pawn pawn = new Pawn(WHITE, FIRST_COLUMN);
+        pawn.setPosition(4, 'd');
+
+        boolean promoted = true;
+        pawn.setPromotion(new Queen(WHITE));
+
+        assertTrue(pawn.canMove(5, 'd', promoted));
+        assertTrue(pawn.canMove(6, 'f', promoted));
+        assertTrue(pawn.canMove(4, 'h', promoted));
+        assertTrue(pawn.canMove(3, 'e', promoted));
+        assertTrue(pawn.canMove(2, 'd', promoted));
+        assertTrue(pawn.canMove(2, 'b', promoted));
+        assertTrue(pawn.canMove(4, 'b', promoted));
+        assertTrue(pawn.canMove(7, 'a', promoted));
+    }
+
+    @Test
+    public void shouldBeAbleToNotMoveLikeQueenWhenPromotedTest() {
+        Pawn pawn = new Pawn(WHITE, FIRST_COLUMN);
+        pawn.setPosition(4, 'd');
+
+        boolean promoted = true;
+        pawn.setPromotion(new Queen(WHITE));
+
+        assertFalse(pawn.canMove(6, 'g', promoted));
+    }
+
 }

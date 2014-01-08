@@ -15,16 +15,16 @@ public class ChessRulesSet {
         new WhiteChessMenHasToMoveFirst(),
         new MoveToClearBinOrCaptureChessMenRule(),
         new PiecesCannotMoveThroughOtherPiecesRule(),
-        new KingHasToMoveWhenIsOnCheckRule()
+//        new KingHasToMoveWhenIsOnCheckRule()
     };
 
     protected static final Map<Class, Rule[]> chessMenRules = new HashMap<Class, Rule[]>() {{
         put(King.class, new Rule[] {
             new KingCannotMoveIntoACheckRule()
         });
-        put(Pawn.class, new Rule[] {
-            new PawnRestrictionsRule()
-        });
+//        put(Pawn.class, new Rule[] {
+//            new PawnRestrictionsRule()
+//        });
     }};
 
     public static boolean validateRules(
